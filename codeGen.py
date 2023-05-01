@@ -1,9 +1,24 @@
 # pip install -U spacy
 # python -m spacy download en_core_web_sm
 import spacy
-import sys
+# import sys
+
+import numpy as np
+
 
 import streamlit as st
+
+params = st.experimental_get_query_params()
+
+st.write(f"""
+
+## Parameters 
+```python
+{params}
+```
+""")
+
+
 
 
 nlp = spacy.load('en_core_web_sm')
@@ -33,7 +48,7 @@ def generate_apex_class(natural_language_input):
     return code
 
 #---------------
-input_text = "Create a class called Customer with  name and age"
+input_text = str(params['input']) #or  "Create a class called Customer with  name and age"
 
 generated_code = generate_apex_class(input_text)
 print(generated_code)
